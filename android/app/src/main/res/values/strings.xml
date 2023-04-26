@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">Koinonia</string>
+
+
+
+
+    <string name="facebook_app_id">1374991909952067</string>
+        <string name="fb_login_protocol_scheme">fb1374991909952067</string>
+
+    <string name="facebook_client_token">6b609a8146b7977d2ca2a27879a316c8</string>
+
+</resources>

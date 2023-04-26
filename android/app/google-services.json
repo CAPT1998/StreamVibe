@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_number": "153323615895",
+    "firebase_url": "https://koinonia-c5163-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "koinonia-c5163",
+    "storage_bucket": "koinonia-c5163.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153323615895:android:18f41f75d7a52eba1b1bd2",
+        "android_client_info": {
+          "package_name": "com.koinonia.connect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153323615895-entne0rim4om5oi5d3vok58c1bo8rbng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koinonia.connect",
+            "certificate_hash": "85982fface9589c0a6d5f2c4e0ea7ac5b851582d"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmrnnd_Ouy99rZwAMof9P6MuT4UgTqHPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153323615895-fik4k6q93ab290alt1ufshi7srhrsv5s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "153323615895-vkl0l9kk2cob9ne8iui6vd4a3iqu2fsr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koinonia.connect"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

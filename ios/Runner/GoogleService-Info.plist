@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>153323615895-vkl0l9kk2cob9ne8iui6vd4a3iqu2fsr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.153323615895-vkl0l9kk2cob9ne8iui6vd4a3iqu2fsr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>153323615895-qsr5atjnc568svuijlbea1l6aoai0271.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBysux3-GWJGb-fubxc0C8pELx9HEgPwCY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>153323615895</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.koinonia.connect</string>
+	<key>PROJECT_ID</key>
+	<string>koinonia-c5163</string>
+	<key>STORAGE_BUCKET</key>
+	<string>koinonia-c5163.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:153323615895:ios:ba8fa59e69f381be1b1bd2</string>
+</dict>
+</plist>
