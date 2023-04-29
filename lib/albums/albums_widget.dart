@@ -218,6 +218,7 @@ class _AlbumsWidgetState extends State<AlbumsWidget> {
                     child: FlutterFlowAdBanner(
                       width: MediaQuery.of(context).size.width,
                       height: 69,
+                      userid: widget.userid,
                     ),
                   ),
                 ),

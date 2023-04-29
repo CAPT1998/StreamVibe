@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../Api/Networkutils.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -62,6 +63,8 @@ class _SettingWidgetState extends State<SettingWidget> {
   List<Profilemodel> pinfo = [];
   List<Profilemodel> pinfo2 = [];
   bool fetching = true;
+    late Networkutils networkutils;
+
   @override
   void initState() {
     super.initState();
@@ -92,7 +95,15 @@ class _SettingWidgetState extends State<SettingWidget> {
       //return
     }
   }
-
+  void checkdownloadallowed() async {
+    await networkutils.downloads(widget.userid);
+    setState(() {});
+    if (Networkutils.download == 1) {
+      print("premium user");
+    } else {
+      print("free user");
+    }
+  }
   Future<void> sharedprefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
@@ -447,7 +458,7 @@ class _SettingWidgetState extends State<SettingWidget> {
                                 ),
                               ),
                             },
-                            child: Container(
+                            child: Networkutils.download == 1 ?Container(): Container(
                               child: FractionallySizedBox(
                                 widthFactor: 1.08,
                                 child: SizedBox(

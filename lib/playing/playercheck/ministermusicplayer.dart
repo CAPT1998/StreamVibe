@@ -973,6 +973,7 @@ class _PlayingWidgetState extends State<ministermusicplayer> {
                     child: FlutterFlowAdBanner(
                       width: MediaQuery.of(context).size.width,
                       height: 170,
+                      userid: widget.userid,
                     ),
                   ),
                 ),

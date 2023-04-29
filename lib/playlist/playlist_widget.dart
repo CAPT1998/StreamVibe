@@ -307,6 +307,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
                 FlutterFlowAdBanner(
                   width: 100,
                   height: 70,
+                  userid: widget.userid,
                 ),
                 SizedBox(
                   width: 466.2,

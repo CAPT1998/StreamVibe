@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../model/categorymodel.dart';
 import '../model/musics.dart';
 import '../model/viewAlbum.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -53,6 +54,7 @@ class _homepagealbumwidgetState extends State {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   List AllArtistsinfo = [];
+  late String userid;
   List<String> images = [
     "assets/images/c1.png",
     "assets/images/c2.png",
@@ -80,6 +82,17 @@ class _homepagealbumwidgetState extends State {
   void initState() {
     init1();
     super.initState();
+    sharedprefs();
+  }
+
+  Future sharedprefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String user = prefs.getString("userid")!;
+    print("basdasdasda" + user);
+    setState(() {
+      userid = prefs.getString("userid")!;
+    });
+    print("current_user_id is " + userid);
   }
 
   @override
@@ -100,7 +113,10 @@ class _homepagealbumwidgetState extends State {
                   transitionDuration: Duration(milliseconds: 300),
                   pageBuilder: (ctx, animation, secondaryAnimation) =>
                       categorymusic(
-                          catid: music.categoryId, catname: music.categoryName),
+                    catid: music.categoryId,
+                    catname: music.categoryName,
+                    userid: userid,
+                  ),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return SlideTransition(

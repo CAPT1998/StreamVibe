@@ -4,6 +4,7 @@ import 'package:koinonia/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:koinonia/flutter_flow/flutter_flow_widgets.dart';
 import 'package:provider/provider.dart';
 
+import '../../Api/Networkutils.dart';
 import '../../flutter_flow/flutter_flow_theme.dart';
 import '../../model/notifications.dart';
 import '../../payment/choosePlanScreen.dart';
@@ -15,13 +16,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     required this.userid,
     this.elevation = 2,
+    
     this.preferredSizee = 50,
   }) : super(key: key);
   String userid;
   String title;
+      late Networkutils networkutils;
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   double elevation;
   double preferredSizee;
 
+  
+  void checkdownloadallowed() async {
+    await networkutils.downloads(userid);
+    if (Networkutils.download == 1) {
+      print("premium user");
+    } else {
+      print("free user");
+    }
+  }
   @override
   // TODO: implement preferredSize
   Size get preferredSize => new Size.fromHeight(preferredSizee);
@@ -36,6 +50,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         mainAxisSize: MainAxisSize.max,
         children: [
+          
           Text(
             '$title',
             style: FlutterFlowTheme.of(context).title2.override(
@@ -46,6 +61,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
           ),
           Spacer(),
+          Networkutils.download == 1 ?Container():
           FFButtonWidget(
             onPressed: () => {
               Navigator.of(context).push(

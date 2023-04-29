@@ -43,7 +43,6 @@ void main() async {
   Stripe.publishableKey =
       'pk_live_51MpflmDEUeImIb8o5f0GEXnFsIHDUWaibxrPSvsdunh0WJ66uZNNylpDooBj8CAFO4nv6IASk7xjK306qKjJKrHj00EylNbZjk';
   //await Stripe.instance.applySettings();
-  
 
   //await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,

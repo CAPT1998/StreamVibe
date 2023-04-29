@@ -267,6 +267,7 @@ class _MinistersWidgetState extends State<MinistersWidget> {
               FlutterFlowAdBanner(
                 width: MediaQuery.of(context).size.width,
                 height: 50,
+                userid: widget.userid,
               ),
               Container(
                 width: MediaQuery.of(context).size.width > 600

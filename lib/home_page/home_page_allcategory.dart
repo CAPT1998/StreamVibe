@@ -16,6 +16,7 @@ import '../model/viewAlbum.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/viewArtist.dart';
 import 'categorymusics.dart';
@@ -50,6 +51,7 @@ class _homepagealbumwidgetState extends State<homepageallcategorywidget> {
   List<Artists> artistinfo = [];
   List allalbumimage = [];
   List allMusicsinfo = [];
+  late String userid;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   List AllArtistsinfo = [];
@@ -91,7 +93,18 @@ class _homepagealbumwidgetState extends State<homepageallcategorywidget> {
   @override
   void initState() {
     init1();
+    sharedprefs();
     super.initState();
+  }
+
+  Future sharedprefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String user = prefs.getString("userid")!;
+    print("basdasdasda" + user);
+    setState(() {
+      userid = prefs.getString("userid")!;
+    });
+    print("current_user_id is " + userid);
   }
 
   @override
@@ -110,7 +123,10 @@ class _homepagealbumwidgetState extends State<homepageallcategorywidget> {
                   transitionDuration: Duration(milliseconds: 300),
                   pageBuilder: (ctx, animation, secondaryAnimation) =>
                       categorymusic(
-                          catid: music.categoryId, catname: music.categoryName),
+                    catid: music.categoryId,
+                    catname: music.categoryName,
+                    userid: userid,
+                  ),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
                     return SlideTransition(
@@ -186,6 +202,7 @@ class _homepagealbumwidgetState extends State<homepageallcategorywidget> {
               child: FlutterFlowAdBanner(
                 width: MediaQuery.of(context).size.width,
                 height: 69,
+                userid: userid,
               ),
             ),
             Expanded(

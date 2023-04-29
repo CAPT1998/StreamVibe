@@ -28,6 +28,7 @@ export 'playing_model.dart';
 
 class PlayingWidget extends StatefulWidget {
   final String musicid;
+  final String userid;
   final String musicalbumname;
   final String musicfile;
   final String musicimage;
@@ -37,6 +38,7 @@ class PlayingWidget extends StatefulWidget {
   const PlayingWidget({
     Key? key,
     required this.musicid,
+    required this.userid,
     required this.musicalbumname,
     required this.musicfile,
     required this.musicimage,
@@ -265,7 +267,7 @@ class _PlayingWidgetState extends State<PlayingWidget> {
                           child: FlutterFlowAdBanner(
                             width: MediaQuery.of(context).size.width,
                             height: 179,
-                             
+                            userid: widget.userid,
                           ),
                         ),
                       ),

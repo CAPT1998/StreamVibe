@@ -401,6 +401,7 @@ class _PlayingWidgetState extends State<PlayingWidget3> {
                           child: FlutterFlowAdBanner(
                             width: MediaQuery.of(context).size.width,
                             height: 179,
+                            userid:userid,
                              
                           ),
                         ),

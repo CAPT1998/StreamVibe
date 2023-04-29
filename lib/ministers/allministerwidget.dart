@@ -260,6 +260,7 @@ class _homepagealbumwidgetState extends State<allministerwidget> {
               child: FlutterFlowAdBanner(
                 width: MediaQuery.of(context).size.width,
                 height: 69,
+                userid: widget.userid,
               ),
             ),
             Expanded(

@@ -429,6 +429,7 @@ class _FollowingWidgetState extends State<FollowingWidget> {
                     child: FlutterFlowAdBanner(
                       width: MediaQuery.of(context).size.width,
                       height: 69,
+                      userid: widget.userid,
                        
                     ),
                   ),

@@ -20,11 +20,17 @@ import 'dart:async';
 
 import '../playing/playercheck/categorymusicplayer.dart';
 import '../playing/playercheck/musicplayer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class categorymusic extends StatefulWidget {
   final String catid;
   final String catname;
-  categorymusic({Key? key, required this.catid, required this.catname})
+  final String userid;
+  categorymusic(
+      {Key? key,
+      required this.catid,
+      required this.catname,
+      required this.userid})
       : super(key: key);
 
   @override
@@ -59,6 +65,7 @@ class _AlbumsWidgetState extends State<categorymusic> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
   List AllArtistsinfo = [];
+  late String userid;
 
   Future init1() async {
     final music = await getAllMusicsApi.getallalbums(widget.catid);
@@ -72,10 +79,13 @@ class _AlbumsWidgetState extends State<categorymusic> {
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
+ 
+
   @override
   void initState() {
     init1();
     super.initState();
+    //sharedprefs();
     print("cat id is" + widget.catid);
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -101,7 +111,7 @@ class _AlbumsWidgetState extends State<categorymusic> {
                     allSong: allMusic,
                     music: music,
                     cid: widget.catid,
-                    userid: '3',
+                    userid: widget.userid,
                   ),
                   transitionsBuilder:
                       (context, animation, secondaryAnimation, child) {
