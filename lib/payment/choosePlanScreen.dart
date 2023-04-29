@@ -134,7 +134,7 @@ class _ChoosePlanScreenState extends State<ChoosePlanScreen> {
       await Stripe.instance.presentPaymentSheet().then((value) {
         showDialog(
             context: context,
-            builder: (_) => const AlertDialog(
+            builder: (_) =>  AlertDialog(
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [

@@ -21,8 +21,11 @@ class EnterverficationcodeWidget extends StatefulWidget {
   final String Email;
   final String otp;
   SignUpModel prevModel;
-   EnterverficationcodeWidget(
-      {Key? key, required this.Email,required this.prevModel, required this.otp})
+  EnterverficationcodeWidget(
+      {Key? key,
+      required this.Email,
+      required this.prevModel,
+      required this.otp})
       : super(key: key);
 
   @override
@@ -38,19 +41,21 @@ class _EnterverficationcodeWidgetState
   final TextEditingController _otpcontroller = TextEditingController();
   AuthHandler authHandler = AuthHandler();
   String? _recipientEmail;
-  String? _otp;
   String _errorMessage = '';
   String userid = "";
   late List<Result> _future;
+  String? _otp;
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => EnterverficationcodeModel());
     _recipientEmail = widget.Email;
-    _otp = widget.otp;
-    print("widget.otp: ${widget.otp}");
+    String? _otp = widget.otp;
+    print("otp is " + _otp!);
+    print("email is " + _recipientEmail!);
+
     _model.textController = TextEditingController();
-    
+
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -69,126 +74,18 @@ class _EnterverficationcodeWidgetState
         await http.post(url, body: {'user_email': widget.Email, 'status': '1'});
   }
 
-  String? _senderName = 'koinonia connect';
-  String? _senderEmail = 'koinonia@connect.com';
-  sendotp() async {
-    String? _otpLength = '5';
-    String baseUrl =
-        "http://flutter.rohitchouhan.com/email-otp/authhandler.php";
-    String url =
-        "$baseUrl?app_name=$_senderName&app_email=$_senderEmail&user_email=$_recipientEmail&otp_length=$_otpLength";
-    Uri uri = Uri.parse(url);
-    http.Response response = await http.get(uri);
-    print(response.body);
-    try {
-      if (response.statusCode == 200) {
-        var json = jsonDecode(response.body);
-        if (jsonDecode(response.body)['status'] == true) {
-          _otp = json['otp'].toString();
-setState(() {
-  
-});
-          return true;
-        }
-      }
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-  Future<List<Result>> postSignup(
-      String? email,
-      String? pass,
-      String? username, //this is firstname
-      String? lastname,
-      ) async {
-    final response = await http.post(
-      Uri.parse("https://admin.koinoniaconnect.org/API/" + 'signup'),
-      body: {
-
-        'user_email': email,
-        'user_password': pass,
-        'firstname': username,
-        'lastname': lastname,
-        'user_profile_pic': "uploads/user/defaultprofile.png",
-      },
-    );
-
-    if (response.statusCode == 200) {
-      final List music = json.decode(response.body);
-      final List result = jsonDecode(response.body);
-      if (result[0] == 'error') {
-        setState(() {
-          _errorMessage = result[1];
-        });
-        throw RangeError(_errorMessage);
-      }
-      return music.map((json) => Result.fromJson(json)).toList();
-    }
-    throw Exception();
-  }
-
   verifyotp() async {
-
-    if (_recipientEmail!.isEmpty || _otp.toString().isEmpty) {
+    if (_recipientEmail!.isEmpty || widget.otp.toString().isEmpty) {
       print("❌ The email or otp is empty. ❌");
       return false;
-    } else if (_otp == _model.textController.text) {
+    } else if (widget.otp == _model.textController.text) {
       updateuserstatus();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-        userid =prefs.getString('userid')!;
-    });
+      setState(() {
+        userid = prefs.getString('userid')!;
+      });
       prefs.setBool('isLoggedIn', true);
       prefs.setString("profilepic", "defaultprofile.png");
-
-
-      // await postSignup(
-      //   widget.prevModel.textController4.text,
-      //   widget.prevModel.textController1.text,
-      //   widget.prevModel.textController2.text,
-      //   widget.prevModel.textController3.text,
-      // ).then((value) {
-      //   print(widget.prevModel.textController4.text);
-      //   print(widget.prevModel.textController1.text);
-      //   print(widget.prevModel.textController2.text);
-
-      //   setState(() {
-      //     _future = value!;
-      // //   });
-      // // });
-
-      // try {
-      //   // ignore: unnecessary_null_comparison
-      //   if (_future[0] == null) {
-      //     print('object');
-      //     ScaffoldMessenger.of(context)
-      //         .showSnackBar(SnackBar(content: Text('check Your credetials!')));
-      //     return;
-      //   }
-      // } on RangeError catch (_) {
-      //   return ScaffoldMessenger.of(context).showSnackBar(
-      //     SnackBar(
-      //       content: Text('User is Already Registered!'),
-      //       backgroundColor: Colors.redAccent,
-      //     ),
-      //   );
-      // }
-      // MyData.myName = _future.result[0].userId;
-      // MyData.myImage = _future.result[0].userProfilePic;
-      // prefs.setBool("isfirst", false);
-      // prefs.setString("name", _future.result[0].userId);
-      //prefs.setString("email", _future.result[0].userEmail);
-      // prefs.setString("firstname", _future[0].userName);
-      // prefs.setString("userid", _future[0].userId);
-      prefs.setString("profilepic", "defaultprofile.png");
-      // setState(() {
-      //   userid =prefs.getString('userid')!;
-      // });
-      // print(prefs.getString('username'));
-
-
 
       print("✅ Verified successfully");
       Navigator.of(context).push(
@@ -216,8 +113,10 @@ setState(() {
         Navigator.of(context).push(
           PageRouteBuilder(
             transitionDuration: Duration(milliseconds: 300),
-            pageBuilder: (ctx, animation, secondaryAnimation) =>
-                NavBarPage(initialPage: 'HomePage', userid: userid,),
+            pageBuilder: (ctx, animation, secondaryAnimation) => NavBarPage(
+              initialPage: 'HomePage',
+              userid: userid,
+            ),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               return SlideTransition(
@@ -270,7 +169,7 @@ setState(() {
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Container(
             width: double.infinity,
-          height: double.infinity,
+            height: double.infinity,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).secondaryBackground,
               image: DecorationImage(

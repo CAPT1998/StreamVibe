@@ -35,31 +35,30 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VerifyEmailModel());
-    _otp = "";
 
     sendotp();
     _model.textController = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
-  late String _otp;
+  String? _otp;
   String? _senderName = 'koinonia';
-  String? _senderEmail = 'koinonia@connect.com';
+  String? _senderEmail = 'mail@koinia.org';
   sendotp() async {
     String? _recipientEmail = widget.Email;
     String? _otpLength = '5';
     String baseUrl =
-        "http://flutter.rohitchouhan.com/email-otp/authhandler.php";
+        "https://admin.koinoniaconnect.org/application/phpmailer_mobileapp/index.php";
     String url =
-        "$baseUrl?app_name=$_senderName&app_email=$_senderEmail&user_email=$_recipientEmail&otp_length=$_otpLength";
+        "$baseUrl?appName=$_senderName&toMail=$_recipientEmail&otpLength=$_otpLength";
     Uri uri = Uri.parse(url);
     http.Response response = await http.get(uri);
     print(response.body);
     try {
       if (response.statusCode == 200) {
         var json = jsonDecode(response.body);
-        if (jsonDecode(response.body)['status'] == true) {
-          _otp = json['otp'].toString();
+        if (jsonDecode(response.body)['status'] == "ok") {
+          _otp = json['message'].toString();
           print(_otp);
           setState(() {
             _otp = this._otp;
@@ -226,7 +225,7 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
                                 EnterverficationcodeWidget(
                                     prevModel: widget.prevModel,
                                     Email: widget.Email,
-                                    otp: _otp),
+                                    otp: _otp!),
                             transitionsBuilder: (context, animation,
                                 secondaryAnimation, child) {
                               return SlideTransition(
