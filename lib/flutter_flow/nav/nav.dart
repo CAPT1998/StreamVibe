@@ -98,12 +98,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   : NavBarPage(initialPage: 'SearchScreen'),
             ),
             FFRoute(
-              name: 'Setting',
-              path: 'setting',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'Setting')
-                  : NavBarPage(initialPage: 'Setting')
-            ),
+                name: 'Setting',
+                path: 'setting',
+                builder: (context, params) => params.isEmpty
+                    ? NavBarPage(initialPage: 'Setting')
+                    : NavBarPage(initialPage: 'Setting')),
             FFRoute(
               name: 'Library',
               path: 'library',
@@ -111,7 +110,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   ? NavBarPage(initialPage: 'Library')
                   : LibraryWidget(),
             ),
-           
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
       ],
@@ -196,7 +194,7 @@ class FFParameters {
 
 class FFRoute {
   const FFRoute({
-     this.userid,
+    this.userid,
     required this.name,
     required this.path,
     required this.builder,

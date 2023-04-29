@@ -49,7 +49,7 @@ void main() async {
   // );
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String userId = '3';
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   await FlutterFlowTheme.initialize();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
